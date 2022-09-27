@@ -1,0 +1,91 @@
+
+//VIdeo 1 Start
+
+Make sure that python is installed in your PC.
+Create a folder with virtual environment. (pip install virtualenv, python -m virtualenv virtualEnvironment)
+Active virtual environment. (virtualEnvironment\Scripts\activate)
+Install Django (pip install django)
+Make Django project. (django-admin startproject testproject .)
+
+//create app 
+python manage.py startapp computerDept
+
+//link app with projects. settings.py
+INSTALLED_APPS=[
+'computerDept.apps.ComputerdeptConfig' //copy from apps.py
+]
+
+python manage.py runserver
+
+//Video 1 End
+
+//VIdeo 2 Starts..
+
+//video 2 is about urls.py
+- from django.http import HttpResponse
+def shout(request):
+	return HttpResponse("Hello World")
+//add path('post/',shout) in urlPatterns
+visit localhost/post to see it
+
+//get dynamic data from url
+// this code will get dynamic data from url and we have to pass that is our function.
+def shout(request,name):
+	return HttpResponse("Hello "+str(name))
+
+add path('post/<str:name>/',shout) in urlPatterns
+
+//
+
+//video 2 END...
+
+
+// Video 3 Start...........
+Move shout fucntion into apps view.py
+
+now create a file called urls.py inside app folder
+
+from . import views
+
+copy urlPatterns from project directory
+
+add from django.urls import path, include in your project urls.py
+
+add path('', include('testapp.urls')) in project urlPatterns
+
+//Video 3 End...
+
+// Video 4 Starts...
+
+Make a global folder called Templates
+create html and css file..
+
+you have to add templates into projects setting.py
+
+under the tamplates section find dirs.. we have to add some code on it.
+
+os.path.join(BASE_DIR, 'Templates')
+import os
+
+now, from django.shortcuts import render in your app views.py
+
+create a function with render method
+
+def html(request):
+    return render(request,'index.html')
+in apps urls.py
+
+add path('',views.html) in url patterns
+//video 4 end
+
+//video 5 starts..
+make sure you have STATIC_URL = 'static/' in your settings.py
+
+create a folder called Static in your app
+add all images in this folder
+
+add {% load static %} in top of html file
+
+if you have to call image write {% static 'filename' %}
+
+//video 5 end..
